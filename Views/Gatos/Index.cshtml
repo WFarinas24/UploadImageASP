@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Sistema_Gatos.Models.tbGato>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imagen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Html.Label(Model.ElementAt(i).nombre)
+                </td>
+                <td>
+                    <img style="border-radius : 100%" width="200" height="200" src="@ViewBag.listaImagenes[i]" alt="Alternate Text" />
+
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@Model.ElementAt(i).id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@Model.ElementAt(i).id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.ElementAt(i).id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
